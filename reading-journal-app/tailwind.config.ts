@@ -14,6 +14,13 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    colors: {
+      "tickle-me-pink": "#F288AF",
+      "blush-pink": "#D95B7D",
+      "cherry-blossom-pink": "#F2A7B5",
+      "amaranth-pink": "#F2A2C0",
+      "eggplant": "#593C47",
+    },
   },
   plugins: [],
 };
