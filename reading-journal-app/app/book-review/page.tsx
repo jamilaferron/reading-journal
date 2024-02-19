@@ -3,10 +3,12 @@ import { Box, Button, Flex, Grid, TextArea, TextField } from "@radix-ui/themes";
 import React from "react";
 import { RiSave3Fill, RiStarSLine } from "react-icons/ri";
 import Image from "next/image";
+import Star from "../components/Star";
+import DynamicComponent from "../components/DynamicComponent";
 
 const BookReviewPage = () => {
   return (
-    <Grid rows="3" gapY="3">
+    <Grid rows="2" gap="7" justify="between">
       <Grid columns="2">
         <Flex direction="column" gap="3">
           <Flex justify="center">
@@ -19,49 +21,33 @@ const BookReviewPage = () => {
               />
             </Box>
           </Flex>
-          <Flex direction="row" justify="center" width="100%">
-            <Box height="5">
-              <RiStarSLine size="2rem" />
-            </Box>
-            <Box height="5">
-              <RiStarSLine size="2rem" />
-            </Box>
-            <Box height="5">
-              <RiStarSLine size="2rem" />
-            </Box>
-            <Box height="5">
-              <RiStarSLine size="2rem" />
-            </Box>
-            <Box height="5">
-              <RiStarSLine size="2rem" />
-            </Box>
-          </Flex>
+          <DynamicComponent numComponents={5} Component={Star} />
         </Flex>
-        <Flex direction="column" gap="4">
+        <Flex direction="column" gap="5" justify="between">
           <Box height="5">
             <TextField.Root>
-              <TextField.Input placeholder="Title" />
+              <TextField.Input placeholder="Title" size="3" />
             </TextField.Root>
           </Box>
           <Box height="5">
             <TextField.Root>
-              <TextField.Input placeholder="Author" />
+              <TextField.Input placeholder="Author" size="3" />
             </TextField.Root>
           </Box>
           <Box height="5">
             <TextField.Root>
-              <TextField.Input placeholder="Genre" />
+              <TextField.Input placeholder="Genre" size="3" />
             </TextField.Root>
           </Box>
           <Flex direction="row" gap="3">
             <Box height="5" width="100%">
               <TextField.Root>
-                <TextField.Input placeholder="Start Date" />
+                <TextField.Input placeholder="Start Date" size="3" />
               </TextField.Root>
             </Box>
             <Box height="5" width="100%">
               <TextField.Root>
-                <TextField.Input placeholder="End Date" />
+                <TextField.Input placeholder="End Date" size="3" />
               </TextField.Root>
             </Box>
           </Flex>
@@ -70,24 +56,26 @@ const BookReviewPage = () => {
           </Box>
         </Flex>
       </Grid>
-      <Grid rows="2">
-        <Box height="2" width="100%">
-          <TextArea placeholder="My Thoughts" size="3" />
-        </Box>
-        <Flex direction="row" gap="4">
-          <Box height="2" width="100%">
-            <TextArea placeholder="Best Parts" size="3" />
+      <Grid columns="1">
+        <Flex direction="column" gap="6">
+          <Box height="9">
+            <TextArea placeholder="My Thoughts" size="3" />
           </Box>
-          <Box height="2" width="100%">
-            <TextArea placeholder="Favorite Quotes" size="3" />
-          </Box>
+          <Flex direction="row" gap="3">
+            <Box height="9" width="100%">
+              <TextArea placeholder="Best Parts" size="3" />
+            </Box>
+            <Box height="9" width="100%">
+              <TextArea placeholder="Favorite Quotes" size="3" />
+            </Box>
+          </Flex>
         </Flex>
+        <Box>
+          <Button className="float-right">
+            <RiSave3Fill size="1.5em" /> Save Review
+          </Button>
+        </Box>
       </Grid>
-      <Box>
-        <Button className="float-right">
-          <RiSave3Fill size="1.5em" /> Save Review
-        </Button>
-      </Box>
     </Grid>
   );
 };
