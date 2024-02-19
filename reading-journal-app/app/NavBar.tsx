@@ -17,6 +17,10 @@ const NavBar = () => {
       label: "Book Shelf",
       href: "/book-shelf",
     },
+    {
+      label: "Book Review",
+      href: "/book-review",
+    },
   ];
 
   return (
