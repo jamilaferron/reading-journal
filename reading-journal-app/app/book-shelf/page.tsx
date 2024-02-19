@@ -1,7 +1,8 @@
+import { Button } from "@radix-ui/themes";
 import React from "react";
 
 const BookShelfPage = () => {
-  return <div>Book Shelf</div>;
+  return <Button>Add Book</Button>;
 };
 
 export default BookShelfPage;
