@@ -2,25 +2,17 @@
 import { Box, Button, Flex, Grid, TextArea, TextField } from "@radix-ui/themes";
 import React from "react";
 import { RiSave3Fill, RiStarSLine } from "react-icons/ri";
-import Image from "next/image";
+
 import Star from "../components/Star";
 import DynamicComponent from "../components/DynamicComponent";
+import { Upload } from "../components/Upload";
 
 const BookReviewPage = () => {
   return (
     <Grid rows="2" gap="7" justify="between">
       <Grid columns="2">
         <Flex direction="column" gap="3">
-          <Flex justify="center">
-            <Box width="max-content">
-              <Image
-                src="/BookCoverPH.png"
-                height={308}
-                width={200}
-                alt="Book Cover Place Holder"
-              />
-            </Box>
-          </Flex>
+          <Upload />
           <DynamicComponent numComponents={5} Component={Star} />
         </Flex>
         <Flex direction="column" gap="5" justify="between">
