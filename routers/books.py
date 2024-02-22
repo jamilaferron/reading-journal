@@ -1,11 +1,12 @@
 import os
 from typing import List
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 import schemas
 import crud
 from database import SessionLocal
 import boto3
+from fastapi import Request, Form
 
 router = APIRouter(
   prefix="/books"
@@ -26,22 +27,28 @@ def get_db():
     db.close()
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-def create_book(book: schemas.BookRequest = Depends(), db: Session = Depends(get_db)):
-  # Upload file to AWS S3
-  s3.upload_fileobj(book.file.file, S3_BUCKET_NAME, book.file.filename)
-
-  uploaded_file_url = f"https://{S3_BUCKET_NAME}.s3.amazonaws.com/{book.file.filename}"
- 
-  book.image_url = uploaded_file_url
+async def create_book(
+    file: UploadFile = File(...), 
+    id: str = Form(...),
+    db: Session = Depends(get_db)
+  ):
   
+  # Upload file to AWS S3
+  s3.upload_fileobj(file.file, S3_BUCKET_NAME, file.filename)
+
+  uploaded_file_url = f"https://{S3_BUCKET_NAME}.s3.eu-west-2.amazonaws.com/{file.filename}"
+
+  book_data = schemas.BookRequest(id=id, image_url=uploaded_file_url)
+
   # Store book in database
-  book = crud.create_book(db, book)
+  book = crud.create_book(db, book_data)
   return book
 
 @router.get("", response_model=List[schemas.BookResponse])
 def get_books(db: Session = Depends(get_db)):
-  book = crud.read_books(db)
-  return book
+  books = crud.read_books(db)
+
+  return books
 
 @router.get("/{id}")
 def get_book_by_id(id: int, db: Session = Depends(get_db)):

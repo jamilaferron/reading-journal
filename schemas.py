@@ -3,20 +3,20 @@ from pydantic import BaseModel
 from typing import Optional
 
 class BookRequest(BaseModel):
-    title: str 
-    author: str 
-    genre: str 
-    file: UploadFile 
-    image_url: Optional[str] = None
-    rating: float 
+    id: str
+    title: Optional[str] = None
+    author: Optional[str] = None
+    genre: Optional[str] = None
+    image_url: str
+    rating: Optional[int] = None
 
 class BookResponse(BaseModel):
-    title: str
-    author: str
-    genre: str
-    image: str
-    rating: float 
-    id: int
+    title: Optional[str] = None
+    author: Optional[str] = None
+    genre: Optional[str] = None
+    image_url: str
+    rating: Optional[int] = None
+    id: str
 
     class Config:
         orm_mode = True

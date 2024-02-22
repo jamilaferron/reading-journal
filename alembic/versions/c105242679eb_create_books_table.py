@@ -21,11 +21,11 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     op.execute("""
     create table books (
-        id bigserial primary key,
+        id text primary key,
         title text,
         author text,
         genre text,
-        image text,
+        image_url text,
         rating float
     )
     """)

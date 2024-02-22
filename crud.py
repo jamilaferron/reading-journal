@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 import models, schemas
 
 def create_book(db: Session, book: schemas.BookRequest):
-  db_book = models.Book(title= book.title, author=book.author, genre=book.genre, image=book.image_url, rating=book.rating)
+  db_book = models.Book(id=book.id, title= book.title, author=book.author, genre=book.genre, image_url=book.image_url, rating=book.rating)
   db.add(db_book)
   db.commit()
   db.refresh(db_book)
